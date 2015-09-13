@@ -2,3 +2,4 @@
 /sandbox/
 /nbproject/
 composer.lock
+/apigen*
