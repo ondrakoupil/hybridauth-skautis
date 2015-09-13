@@ -1,7 +1,7 @@
-# Rozšíření pro HybridAuth pro jednoduché přihlašování přes SkautIS
+# Jednoduché přihlašování přes SkautIS pomocí HybridAuth
 
 HybridAuth je PHP knihovna pro univerzální přihlašování přes různé veřejné služby
-a sociální sítě, napr. Facebook či Google. S pomocí tohoto rozšíření lze do vaší aplikace
+a sociální sítě, např. Facebook či Google. S pomocí tohoto rozšíření lze do vaší aplikace
 přidat i přihlašování přes SkautIS.
 
 ## Instalace
@@ -17,7 +17,7 @@ způsobem je všechny includovat. Samotný HybridAuth lze stáhnout z [jeho webu
 
 Přihlášení přes SkautIS probíhá až na několik odlišností stejně jako přes Google či Facebook.
 Pokud s HybridAuth nemáte zkušenosti, prostudujte si [jejich dokumentaci][ha-ug], kde je
-vše dopodrobna popsané, anebo tento [stručný popis][article-ha], který vás namíří správným směrem.
+vše dopodrobna popsané, anebo tento [stručný návod][article-ha], který vás namíří správným směrem.
 
 Také budete potřebovat svoji aplikaci zaregistrovat do SkautISu a získat její AppID.
 
@@ -25,7 +25,7 @@ Také budete potřebovat svoji aplikaci zaregistrovat do SkautISu a získat jej�
 
 V konfiguraci HybridAuth přidáte nový provider jménem SkautIS. Konfigurace může vypadat zhruba takto:
 
-```
+```php
 $config = array(
 	"base_url" => "... URL vašeho endpointu ...",
 	"providers" => array (
@@ -75,19 +75,20 @@ zrychlit přihlášení tím, že zakážete nepotřebné údaje. Ve výchozím 
 
 ## Rozdíly oproti standardnímu přihlášení přes HybridAuth 
 
-Jelikož SkautIS je dost specifický a pravděpodobně z něj budete chtít i nějaká jiná data, než z klasických
-sociálních sítí, tak volání `$adapter->getUserProfile()` nevrací standardní `Hybrid_User_Profile` objekt, ale jeho 
-odděděnou rozšířenou verzi, objekt `\HybridAuth\SkautIS\UserProfile`. Ten obsahuje to, co základní profil,
-a navíc i nějaké další údaje týkající se zejména rolí a jednotek v Junáku. 
+Jelikož SkautIS je dost specifický a pravděpodobně z něj budete chtít i nějaká jiná data, než HybridAuth vydoluje 
+z klasických sociálních sítí, tak volání `$adapter->getUserProfile()` nevrací standardní `Hybrid_User_Profile`, ale jeho 
+odděděnou rozšířenou verzi, objekt třídy `\HybridAuth\SkautIS\UserProfile`. Ten obsahuje jak to, co základní profil,
+tak i nějaké další údaje navíc specifické pro SkautIS týkající se zejména rolí a jednotek v Junáku. Je na vás,
+jak si s nimi pak ve své aplikaci poradíte.
 
-Prohlédněte si dokumentaci tříd [UserProfile][profile-doc], [Role][role-doc] a [Unit][unit-doc], kde je vše popsáno
-podrobněji.
+Prohlédněte si třídy [UserProfile][profile-doc], [Role][role-doc] a [Unit][unit-doc], z nichž jistě vše
+pochopíte podrobněji.
 
 ## Fotky
 
 HybridAuth předpokládá, že poskytovatel přihlášení nabízí ke stažení uživatelův portrét jako na nějaký URL,
 který lze získat přes `UserProfile -> $photoURL`. SkautIS ale posílá přímo binární obsah obrázku. 
-Ten je sice dostupný v `UserProfile -> $photoData`, ale abychom ale zachovali kompatibilitu 
+Ten je sice dostupný v `UserProfile -> $photoData`, ale abychom zachovali kompatibilitu 
 s ostatními poskytovateli, lze nastavit v konfiguraci položku `photoProxy`, která práci 
 s obrázky sjednotí. Zvolte si takový přístup, který bude lépe vyhovovat dalšímu 
 zpracování obrázků po přihlášení.
@@ -99,6 +100,15 @@ Po jeho zpracování byste pak tento soubor zase měli smazat.
 Druhou možností je zadat array se dvěma položkami, `dir` a `url`. `dir` je stejně jako v předchozím případě
 cesta k adresáři pro uložení souboru a `url` je jeho veřejná URL adresa, přes níž je možné
 se na soubory v adresáři dostat přes internet. $photoURL se pak nastaví na veřejný URL vzniklého souboru.
+
+```
+"photoProxy" => "../some/temp/directory"
+
+"photoProxy" => array(
+	"dir" => "../www/portraits",
+	"url" => "http://www.moje-aplikace.cz/portraits"
+)
+```
 
 
 ## Ladění chyb
@@ -126,9 +136,9 @@ Pokusím se poradit, bude-li to v mých silách :-)
 
 [ha]: http://hybridauth.sourceforge.net/
 [ha-ug]: http://hybridauth.sourceforge.net/userguide.html
-[profile-doc]: ./docs/class-HybridAuth.SkautIS.UserProfile.html
-[role-doc]: ./docs/class-HybridAuth.SkautIS.Role.html
-[unit-doc]: ./docs/class-HybridAuth.SkautIS.Unit.html
+[profile-doc]: ./src/UserProfile.php
+[role-doc]: ./src/Role.php
+[unit-doc]: ./src/Unit.php
 [article-ha]: ./hybridauth.readme.md
 [me]: https://github.com/ondrakoupil/
 
