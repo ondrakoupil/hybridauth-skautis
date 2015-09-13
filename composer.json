@@ -21,7 +21,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "OndraKoupil\\HybridAuth\\SkautIS\\": "src/"
+            "HybridAuth\\SkautIS\\": "src/"
         }
     }
 }
