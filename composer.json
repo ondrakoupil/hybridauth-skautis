@@ -1,0 +1,27 @@
+{
+    "name": "ondrakoupil/hybridauth-skautis",
+    "description": "Plugin pro HybridAuth umožňující jednoduché přihlašování přes SkautIS.",
+    "type": "library",
+    "require-dev": {
+        "ondrakoupil/testing-utils": "~0.0.7",
+        "nette/tester": "^1.4"
+    },
+    "require": {
+        "ondrakoupil/tools": "~0.0.6",
+        "hybridauth/hybridauth": "^2.4",
+        "ext-soap": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ondrej Koupil",
+            "email": "okoun@hranostaj.cz"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "OndraKoupil\\HybridAuth\\SkautIS\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,4 @@
+/vendor/
+/sandbox/
+/nbproject/
+composer.lock
