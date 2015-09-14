@@ -30,7 +30,7 @@ Hybrid_Endpoint::process();
 ```
 
 HybridAuth si pro uchování různých stavových informací ukládá data do $_SESSION. Je tedy nutné
-endpoint umístit tak, aby byla session pro něj i pro zbytek avšeho webu společná. Zpravidla to znamená,
+endpoint umístit tak, aby byla session pro něj i pro zbytek vašeho webu společná. Zpravidla to znamená,
 že musí být hostován na stejné doméně.
 
 
@@ -102,9 +102,10 @@ $profile = $adapter->getUserProfile();
 // $profile je objekt třídy Hybrid_User_Profile
 // a obsahuje údaje o přihlášeném uživateli.
 echo "Ahoj " . $profile->displayName . "!";
-```php
 
-Podrobnější popis postupu přihlášení 
+```
+
+Podrobnější popis procesu přihlášení a dostupných dat
 najdete na http://hybridauth.sourceforge.net/userguide/Profile_Data_User_Profile.html
 
 
@@ -133,6 +134,6 @@ Tímto způsobem je možné nejen načítat data o uživateli, ale i získávat 
 funkce se liší služba od služby, nicméně samotné přihlášení a získání uživatelova profilu podporují všechny (včetně SkautISu).
 
 
-[readme][./readme.md]
+[readme]: ./readme.md
 
 
