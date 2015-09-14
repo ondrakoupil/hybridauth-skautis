@@ -17,7 +17,9 @@ způsobem je všechny includovat. Samotný HybridAuth lze stáhnout z [jeho webu
 
 Přihlášení přes SkautIS probíhá až na několik odlišností stejně jako přes Google či Facebook.
 Pokud s HybridAuth nemáte zkušenosti, prostudujte si [jejich dokumentaci][ha-ug], kde je
-vše dopodrobna popsané, anebo tento [stručný návod][article-ha], který vás namíří správným směrem.
+vše dopodrobna popsané.
+
+Anebo si přečtěte [stručný návod pro začátky s HybridAuthem][article-ha], který vás namíří správným směrem.
 
 Také budete potřebovat svoji aplikaci zaregistrovat do SkautISu a získat její AppID.
 
